@@ -14,10 +14,10 @@ import { LogService } from './log.service';
       ],
       uri: 'amqp://root:root@localhost:5672',
       connectionInitOptions: { wait: false },
-      enableControllerDiscovery: true
+      enableControllerDiscovery: true,
     }),
   ],
   controllers: [LogController],
-  providers: [LogService]
+  providers: [LogService],
 })
 export class LogModule {}

@@ -3,14 +3,11 @@ import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
 @Injectable()
 export class LogService {
-  constructor(private readonly amqpConnection: AmqpConnection){}
+  constructor(private readonly amqpConnection: AmqpConnection) {}
 
-  async logError(){
-    this.amqpConnection.publish(
-      'log_exchange',
-      'log.error',
-      { msg: 'Internal Server Error' }
-    )
+  async logError() {
+    this.amqpConnection.publish('log_exchange', 'log.error', {
+      msg: 'Internal Server Error',
+    });
   }
-
 }

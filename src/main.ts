@@ -8,8 +8,10 @@ async function bootstrap() {
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('RabbitMQ database')
-    .setDescription('A api service that uses RabbitMQ to populate database tables.')
-    .build()
+    .setDescription(
+      'A api service that uses RabbitMQ to populate database tables.',
+    )
+    .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, document);
 
