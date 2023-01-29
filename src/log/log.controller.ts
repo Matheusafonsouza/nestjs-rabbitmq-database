@@ -1,17 +1,19 @@
-import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
 import { Controller, Get } from '@nestjs/common';
-import { ApiResponse, ApiInternalServerErrorResponse } from '@nestjs/swagger';
-import { AppService } from './app.service';
+import { ApiResponse, ApiInternalServerErrorResponse, ApiTags } from '@nestjs/swagger';
+import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
+import { LogService } from './log.service';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService){}
 
-  @Get('/log-error')
+@ApiTags('log')
+@Controller('log')
+export class LogController {
+  constructor(private readonly logService: LogService){}
+
+  @Get('/error')
   @ApiResponse({ status: 200, description: 'Successfully created log on service.' })
   @ApiInternalServerErrorResponse({ description: 'Internal Server Error. '})
   async log(){
-    return this.appService.logError();
+    return this.logService.logError();
   }
 
   @RabbitSubscribe({
